@@ -1,0 +1,509 @@
+:root {
+    --templ: #0f03319d;
+    --dark-color: #192a56;
+    --light-color: #666;
+    --box-shadow: 0 .5rem 1.5rem rgba(0, 0, 0, .1);
+}
+
+* {
+    font-family: 'Nunito', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    transition: all .2s linear;
+}
+
+html {
+    font-size: 62.5%;
+    overflow-x: hidden;
+    scroll-padding-top: 5.5rem;
+    scroll-behavior: smooth;
+}
+
+section {
+    padding: 2rem 9%;
+}
+
+.weather-contenaire{
+    background: #666;
+    text-align: center;
+}
+
+.weather{
+    font-size : 22px;
+    margin: 0;
+ 
+}
+
+.temp{
+    font-size : 60px;
+    margin: 0;
+}
+
+section:nth-child(odd) {
+    background: rgb(238, 238, 238);
+}
+
+.sub-heading {
+    text-align: center;
+    color: var(--templ);
+    font-size: 2rem;
+    padding-top: 1rem;
+}
+
+.heading {
+    text-align: center;
+    color: var(--dark-color);
+    font-size: 3rem;
+    padding-bottom: 2rem;
+    text-transform: uppercase;
+}
+
+.btn,
+.collapse {
+    margin-top: 1rem;
+    display: inline-block;
+    font-size: 1.7rem;
+    color: #fff;
+    background: var(--dark-color);
+    border-radius: .5rem;
+    cursor: pointer;
+    padding: .8rem 3rem;
+}
+
+.btn:hover {
+    background: var(--templ);
+    letter-spacing: .1rem;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: var(--templ);
+    padding: 1rem 7%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 1000;
+    box-shadow: var(--box-shadow);
+}
+
+header .logo {
+    color: var(--dark-color);
+    font-size: 2.5rem;
+    font-weight: bolder;
+}
+
+header .logo i {
+    color: var(--templ);
+}
+
+header .navbar a {
+    font-size: 1.7rem;
+    border-radius: .5rem;
+    padding: .5rem 1.5rem;
+    color: var(--light-color);
+}
+
+header .navbar a.active,
+header .navbar a:hover {
+    color: #fff;
+    background: var(--templ);
+}
+
+header .icons i,
+header .icons a {
+    cursor: pointer;
+    margin-left: .5rem;
+    height: 4.5rem;
+    line-height: 4.5rem;
+    width: 4.5rem;
+    text-align: center;
+    font-size: 1.7rem;
+    color: var(--dark-color);
+    border-radius: 50%;
+    background: #eee;
+}
+
+header .icons i:hover,
+header .icons a:hover {
+    color: #fff;
+    background: var(--templ);
+    transform: rotate(360deg);
+}
+
+header .icons #menu-bars {
+    display: none;
+}
+
+.home {
+    margin-top: 1.4cm;
+}
+
+.box-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(28rem, 1fr));
+    gap: 1.5rem;
+}
+
+.box-container .box {
+    padding: 2.5rem;
+    background: #fff;
+    border-radius: .5rem;
+    border: .1rem solid rgba(0, 0, 0, .2);
+    box-shadow: var(--box-shadow);
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+}
+
+.box-container .box img {
+    height: 17rem;
+    margin: 1rem 0;
+}
+
+.box-container .box h3 {
+    color: var(--dark-color);
+    font-size: 2.5rem;
+}
+
+.box-container .box span {
+    color: var(--templ);
+    font-weight: bolder;
+    margin-right: 1rem;
+    font-size: 2.5rem;
+}
+
+.home .row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+
+.home .row .content {
+    flex: 1 1 45rem;
+}
+
+.home.row .content h3 {
+    color: var(--dark-color);
+    font-size: 4rem;
+    padding: .5rem 0;
+}
+
+.home .row .content p {
+    color: var(--light-color);
+    font-size: 1.5rem;
+    padding: .5rem 0;
+    line-height: 2;
+}
+
+.home .row .content .icons-container {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    padding: 1rem 0;
+    margin-top: .5rem;
+}
+
+.home .row #content #cir1 {
+    animation: rotate 5s infinite linear;
+    display: inline-block;
+    width: 320px;
+    height: 320px;
+}
+
+.home .row #content #cir1:before {
+    content: '';
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    border: 90px solid transparent;
+    border-top-color: rgba(218, 90, 150, 0.75);
+    border-right-color: rgba(218, 90, 150, 0.75);
+    transform: rotate(-45deg);
+    border-radius: 50%;
+}
+
+.home .row #content #cir1:after {
+    content: '';
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    border: 90px solid transparent;
+    border-bottom-color: rgb(83, 10, 10);
+    border-left-color: rgb(83, 10, 10);
+    transform: rotate(-45deg);
+    border-radius: 50%;
+}
+
+.mentors .row .content .icons-container .icons {
+    background: #eee;
+    border-radius: .5rem;
+    border: .1rem solid rgba(0, 0, 0, .2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    flex: 1 1 17rem;
+    padding: 1.5rem 1rem;
+}
+
+.mentors .box-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+    gap: 1.5rem;
+}
+
+.mentors .box-container .box {
+    background: #fff;
+    border: .1rem solid rgba(0, 0, 0, .2);
+    border-radius: .5rem;
+    box-shadow: var(--box-shadow);
+}
+
+.mentors .box-container .box .image {
+    height: 25rem;
+    width: 100%;
+    padding: 1.5rem;
+    overflow: hidden;
+    position: relative;
+}
+
+.mentors .box-container .box .image img {
+    height: 100%;
+    width: 100%;
+    border-radius: .5rem;
+    object-fit: cover;
+}
+
+.mentors .box-container .box .content {
+    padding: 2rem;
+    padding-top: 0;
+}
+
+.mentors .box-container .box .content h3 {
+    color: var(--dark-color);
+    font-size: 2.5rem;
+}
+
+.mentors .box-container .box .content p {
+    color: var(--light-color);
+    font-size: 1.6rem;
+    padding: .5rem 0;
+    line-height: 1.5;
+}
+
+.mentors .box-container .box .content .price {
+    color: var(--templ);
+    margin-left: 1rem;
+    font-size: 2.5rem;
+}
+
+.apt form {
+    max-width: none;
+    border-radius: .5rem;
+    box-shadow: var(--box-shadow);
+    border: .1rem solid rgba(0, 0, 0, .2);
+    background: #fff;
+    padding: 1.5rem;
+    margin: 0 auto;
+}
+
+.apt form .inputBox {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.apt form .inputBox .input {
+    width: 49%;
+}
+
+.apt form .inputBox .input span {
+    display: block;
+    padding: .5rem 0;
+    font-size: 1.5rem;
+    color: var(--light-color);
+}
+
+.apt form .inputBox .input input,
+.apt form .inputBox .input textarea,
+select {
+    background: #eee;
+    border-radius: .5rem;
+    padding: 1rem;
+    font-size: 1.6rem;
+    color: var(--dark-color);
+    text-transform: none;
+    margin-bottom: 1rem;
+    width: 100%;
+}
+
+.apt form .inputBox .input input:focus,
+.apt form .inputBox .input textarea:focus {
+    border: .1rem solid var(--templ);
+}
+
+.apt form .inputBox .input textarea {
+    height: 20rem;
+    resize: none;
+}
+
+.apt form .btn {
+    margin-top: 0;
+}
+
+.footer .box-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+    gap: 1.5rem;
+}
+
+.footer .box-container .box h3 {
+    padding: .5rem 0;
+    font-size: 2.5rem;
+    color: var(--dark-color);
+}
+
+.footer .box-container .box a {
+    display: block;
+    padding: .5rem 0;
+    font-size: 1.5rem;
+    color: var(--light-color);
+}
+
+/*change color and put underline when passing the cursor*/
+.footer .box-container .box a:hover {
+    color: var(--templ);
+    text-decoration: underline;
+}
+
+nav {
+    float: right;
+}
+
+nav ul li {
+    display: inline-block;
+    padding: 15px 25px;
+}
+
+.toggle-btn {
+    width: 35px;
+    position: relative;
+    right: 0px;
+    top: 0px;
+    display: none;
+}
+
+.toggle-btn span {
+    display: inline-block;
+    width: 100%;
+    height: 2px;
+    background-color: var(--dark-color);
+    /* margin-bottom: 4px;*/
+}
+
+.header nav ul li a {
+    text-decoration: none;
+    display: inline-block;
+    color: #000;
+    font-weight: 600;
+}
+
+/* media queries  */
+@media screen and (max-width:991px) {
+
+    html {
+        font-size: 55%;
+    }
+
+    header {
+        padding: 1rem 2rem;
+    }
+
+    section {
+        padding: 2rem;
+    }
+}
+
+@media screen and (max-width:768px) {
+
+    .toggle-btn {
+        display: block;
+    }
+
+    #navb {
+        display: none;
+        width: 100%;
+        border-top: 1px solid #000;
+        padding-top: 20px;
+        margin-top: 30px;
+    }
+
+    #navb ul li {
+        padding: 15px 0px;
+        width: 100%;
+    }
+
+    #navb.show {
+        display: block ;
+    }
+}
+
+@media screen and (max-width:450px) {
+    html {
+        font-size: 50%;
+    }
+
+    .box-container .box img {
+        height: auto;
+        width: 100%;
+    }
+
+    .apt form .inputBox .input {
+        width: 100%;
+    }
+
+    .toggle-btn {
+        display: block;
+    }
+
+    #navb {
+        display: none;
+        width: 100%;
+        border-top: 1px solid #000;
+        padding-top: 20px;
+        margin-top: 30px;
+    }
+
+    #navb ul li {
+        padding: 15px 0px;
+        width: 100%;
+    }
+
+    #navb.show {
+        display: block;
+    }
+}
+
+#circle {
+    background: lightblue;
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+}
+
+.active,
+.collapse:hover {
+    background-color: var(--templ);
+}
+
+.text1 {
+    background-color: var(--dark-color);
+    display: none;
+    font-size: 20px;
+}

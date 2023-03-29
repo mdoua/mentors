@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MI program</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="js/script.js"></script>
+
+</head>
+
+<body>
+
+    <!-- header section -->
+
+    <header>
+        <a href="#" class="logo">MI Program.</a>
+
+        <nav class="navbar" id="navb">
+            <ul>
+                <li><a class="active" href="#home">Home</a></li>
+                <li><a href="#mentors">Mentors</a></li>
+                <li><a href="#apt">Appointment</a></li>
+            </ul>
+        </nav>
+
+        <div class="toggle-btn" onclick="myFunction2();">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </header>
+
+
+    <!-- home section -->
+    <section class="home" id="home">
+
+        <div class="row">
+            <div class="content">
+                <h1>Welcome to our Program.</h1>
+                <h2>What ever the weather is we are waiting you.</h2>
+                <p></p>
+            </div>
+        </div>
+
+        <div>
+            <div class="weather-container">
+                <h1>Today weather :</h1>
+
+                <img class="icon" alt="">
+                <p class="weather"></p>
+                <p class="temp"></p>
+                <script>
+
+                    $.getJSon("http://api.openweathermap.org/data/2.5/weather?q=Cincinnati&APPID=0d7ed9ff8c390ee6722a92c1a0b2623c",
+                        function (data) {
+                            alert(22254445);
+                            alert(data.weather[0].icon);
+                            let icon = "http://openweathermap.org/img/w/" + data.weather[0].icon + ".png";
+                            let temp = data.main.temp;
+                            let weather = data.weather[0].main;
+                            alert(temp);
+                            alert(weather);
+                            $(".icon").attr("src", icon);
+                            $(".temp").append(temp);
+                            $(".weather").append(weather);
+                        }
+                    );
+                </script>
+            </div>
+        </div>
+    </section>
+
+    <!-- mentors section  -->
+
+    <section class="mentors" id="mentors">
+
+        <h3 class="heading"> Mentors </h3>
+        <h1 class="sub-heading"> Mentors </h1>
+
+        <div class="box-container">
+            <div class="box">
+                <div class="image">
+                    <img src="images/mentor1.jpg" alt="">
+                </div>
+
+                <div class="content">
+                    <h3>Mentor 1 </h3>
+                    <p>bref description</p>
+                    <a href="#apt" class="btn">schedule now</a>
+                </div>
+            </div>
+
+            <div class="box">
+                <div class="image">
+                    <img src="images/mentor2.jpg" alt="">
+                </div>
+                <div class="content">
+                    <h3>Mentor 2</h3>
+                    <p>bref description</p>
+                    <a href="#apt" class="btn">schedule now</a>
+                </div>
+            </div>
+
+            <div class="box">
+                <div class="image">
+                    <img src="images/mentor3.jpg" alt="">
+                </div>
+                <div class="content">
+                    <h3>Mentor 3</h3>
+                    <p>bref description</p>
+                    <a href="#apt" class="btn">schedule now</a>
+
+                </div>
+            </div>
+
+            <div class="box">
+                <div class="image">
+                    <img src="images/mentor4.jpg" alt="">
+                </div>
+
+                <div class="content">
+                    <h3>Mentor 4</h3>
+                    <p>bref description.</p>
+                    <a href="#apt" class="btn">schedule now</a>
+
+                </div>
+            </div>
+
+            <div class="box">
+                <div class="image">
+                    <img src="images/mentor5.jpg" alt="">
+                </div>
+                <div class="content">
+
+                    <h3>Mentor 5</h3>
+                    <p>Bref description.</p>
+                    <a href="#apt" class="btn">schedule now</a>
+
+                </div>
+            </div>
+
+            <div class="box">
+                <div class="image">
+                    <img src="images/mentor6.jpg" alt="">
+                </div>
+                <div class="content">
+                    <h3>Mentor 6</h3>
+                    <p>bref description.</p>
+                    <a href="#apt" class="btn">schedule now</a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- schedule section starts  -->
+    <section class="apt" id="apt">
+
+        <h1 class="heading"> Appointments </h1>
+        <h1 class="sub-heading"> Please select the mentor and the shift you want. </h1>
+
+        <form name="myForm" onclick="">
+            <h3 class="sub-heading" id="confMsg"></h3>
+            <div class="inputBox">
+                <div class="input">
+                    <span>Mentor:</span>
+                    <select name="ment" id="ments" required onchange=loadShift()>
+                    </select>
+                </div>
+
+                <div class="input">
+                    <span>Shift:</span>
+                    <select name="shift" id="shifts">
+                    </select>
+                </div>
+
+                <div class="input">
+                    <span>First name :</span>
+                    <input type="text" required placeholder="enter your first name">
+                </div>
+
+                <div class="input">
+                    <span>Last name :</span>
+                    <input type="text" required placeholder="enter your last name">
+                </div>
+
+                <div class="input">
+                    <span>Phone :</span>
+                    <input type="number" required placeholder="enter your phone number">
+                </div>
+
+                <div class="input">
+                    <span>Email :</span>
+                    <input type="text" required placeholder="enter your email">
+                </div>
+
+                <div class="input">
+                    <span>Message :</span>
+                    <textarea name="" placeholder="enter your message" id=""></textarea>
+                </div>
+            </div>
+
+            <input type="submit" value="Confirm" onclick=myFun(this.parentElement) class="btn">
+        </form>
+
+
+    </section>
+
+    <!-- footer section   -->
+
+    <section class="footer">
+        <div>
+            <p><small>&copy;2022 MI PROGRAM - All right reserved</small></p>
+        </div>
+    </section>
+
+</body>
+
+
+</html>
