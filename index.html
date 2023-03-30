@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MI program</title>
+    <title>Mentor program</title>
     <link rel="stylesheet" href="css/style.css">
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script src="js/script.js"></script>
@@ -15,7 +15,6 @@
 <body>
 
     <!-- header section -->
-
     <header>
         <a href="#" class="logo">MI Program.</a>
 
@@ -37,41 +36,35 @@
 
     <!-- home section -->
     <section class="home" id="home">
+        <h3 class="heading"> Welcome to our Program.</h3>
+        <div class="box-container">
+            <div class="box">
+                <div>
+                    <h3>Let's get you an activity before starting.</h3>
+                </div>
 
-        <div class="row">
-            <div class="content">
-                <h1>Welcome to our Program.</h1>
-                <h2>What ever the weather is we are waiting you.</h2>
-                <p></p>
+                <div class="image">
+                    <img src="images/mentoring1.jpg" alt="">
+                </div>
+
+                <div>
+                    <h3 class="content"></h3>
+                        <script>
+                            async function getRandomActivity() {
+                                var apiURL = "http://www.boredapi.com/api/activity/";
+                                var response = await fetch(apiURL);
+                                var data = await response.json();
+                                var {activity} = data;
+                                document.querySelector(".content").innerHTML = activity ;
+                            }
+        
+                            setInterval(getRandomActivity,5000);
+                        </script>  
+                   
+                </div>
             </div>
         </div>
 
-        <div>
-            <div class="weather-container">
-                <h1>Today weather :</h1>
-
-                <img class="icon" alt="">
-                <p class="weather"></p>
-                <p class="temp"></p>
-                <script>
-
-                    $.getJSon("http://api.openweathermap.org/data/2.5/weather?q=Cincinnati&APPID=0d7ed9ff8c390ee6722a92c1a0b2623c",
-                        function (data) {
-                            alert(22254445);
-                            alert(data.weather[0].icon);
-                            let icon = "http://openweathermap.org/img/w/" + data.weather[0].icon + ".png";
-                            let temp = data.main.temp;
-                            let weather = data.weather[0].main;
-                            alert(temp);
-                            alert(weather);
-                            $(".icon").attr("src", icon);
-                            $(".temp").append(temp);
-                            $(".weather").append(weather);
-                        }
-                    );
-                </script>
-            </div>
-        </div>
     </section>
 
     <!-- mentors section  -->
@@ -79,7 +72,6 @@
     <section class="mentors" id="mentors">
 
         <h3 class="heading"> Mentors </h3>
-        <h1 class="sub-heading"> Mentors </h1>
 
         <div class="box-container">
             <div class="box">
