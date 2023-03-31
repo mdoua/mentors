@@ -1,12 +1,8 @@
-
-
 window.onload = function () {
     initializeShifts();
     bindMentorsToDropDown();
 
 }
-
-
 
 
 class MShift {
@@ -15,7 +11,6 @@ class MShift {
 }
 
 let ShiftMentorList = [];
-
 
 
 function initializeShifts() {
@@ -101,18 +96,16 @@ function myFunction2() {
 }
 
 function ValidateEmail(mail) {
+  
+    //validate that email is valid by matching it to the regular expression
     let mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
     return mail.match(mailformat);
 }
 
 function myFun(form) {
-    let mentorSc = form[0].value;
-    let shiftSc = form[1].value;
-    let fname = form[2].value;
-    let lname = form[3].value;
-    let phone = form[4].value;
-    let email = form[5].value;
-    let message = form[6].value;
+
+
+    let [mentorSc,  shiftSc, fname, lname, phone, email, message] = form ;
 
     const c1 = "Thank you ";
     const c2 = " for your appointment.";
@@ -121,7 +114,7 @@ function myFun(form) {
 
     if (correctmail) {
 
-        let message = c1 + fname + " " + lname + c2;
+        let msgConfirmation = c1 + fname + " " + lname + c2;
         let fileObj = {
             table: []
         };
@@ -133,35 +126,28 @@ function myFun(form) {
             lnameP: lname,
             phoneP: phone,
             emailP: email,
-            messageP: message
+            messageP: message,
         });
 
         let json = JSON.stringify(fileObj);
 
         let fs = require('fs');
-
        
         fs.writeFile('file.json', json, 'utf8', callback);
 
-        document.getElementById("confMsg").innerHTML = message;
+        document.getElementById("confMsg").innerHTML = msgConfirmation;
     }
+
     else {
         document.getElementById("confMsg").innerHTML = "Please correct your email";
     }
 }
 
 
-// get todays weather from api
-$.getJSon("http://api.openweathermap.org/data/2.5/weather?q=Cincinnati&APPID=0d7ed9ff8c390ee6722a92c1a0b2623c",
-    function (data) {
-
-
-        let icon = "http://openweathermap.org/img/w/" + data.weather[0].icon + ".png";
-        let temp = data.main.temp;
-        let weather = data.weather[0].main;
-
-        $(".icon").attr("src", icon);
-        $(".temp").append(temp);
-        $(".weather").append(weather);
-    }
-);
+ async function getRandomActivity() {
+    var apiURL = "http://www.boredapi.com/api/activity/";
+    var response = await fetch(apiURL);
+    var data = await response.json();
+    var {activity} = data;
+    document.querySelector(".content").innerHTML = activity ;
+}

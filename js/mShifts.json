@@ -1,0 +1,27 @@
+
+[
+    {   
+        "mentorName" : "Mentor1",
+        "mentorShifts" :["shift1", "shift2", "shift3"]
+    },
+    {
+        "mentorName" : "Mentor2",
+        "mentorShifts" :["shift1", "shift2"]
+    },
+    {
+       "mentorName" : "Mentor3",
+       "mentorShifts" : ["shift1", "shift2", "shift3", "shift4", "shift5"]
+    },
+    {
+        "mentorName" : "Mentor4",
+        "mentorShifts" : ["shift1", "shift2", "shift3", "shift4", "shift5"]
+    },
+    {
+        "mentorName" : "Mentor5",
+        "mentorShifts" : ["shift1", "shift2", "shift3", "shift4"]
+    },
+    {
+        "mentorName" : "Mentor6",
+        "mentorShifts" : ["shift1", "shift2", "shift3", "shift4"]
+    }
+]
