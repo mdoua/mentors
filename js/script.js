@@ -19,7 +19,7 @@ function initialisation (){
     
 }
 
-function initializeShifts(jData) {
+function initializeShifts(jData , message1="") {
     console.log("LIST 1");
     console.log(jData);
     console.log(jData.length);
@@ -34,7 +34,7 @@ function initializeShifts(jData) {
         iM++;
     });
    
-    console.log("LIST LIST");
+    console.log(message1);
     console.log(shiftMentorList[--iM]);
     bindMentorsToDropDown();
     
@@ -92,45 +92,59 @@ function findShiftByMentor(name) {
 }
 
 function ValidateEmail(mail) {
-  
     //validate that email is valid by matching it to the regular expression
     let mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    alert(mail);
     return mail.match(mailformat);
 }
 
 function submitForm1(form) {
+    
+    let mentorSc = form[0].value;
+    let shiftSc = form[1].value;
+    let fname = form[2].value;
+    let lname = form[3].value;
+    let phone = form[4].value;
+    let email = form[5].value;
+    let message = form[6].value;
 
-    let [mentorSc,  shiftSc, fname, lname, phone, email, message] = form ;
-    console.log("Om           ar")
     const c1 = "Thank you ";
     const c2 = " for your appointment.";
 
     let correctmail = ValidateEmail(email);
-    console.log("Omar ooooooo")
+ 
     if (correctmail) {
 
-        let msgConfirmation = c1 + fname + " " + lname + c2;
-        let fileObj = {
-            table: []
-        };
-        console.log("Omar")
-        fileObj.table.push({
-            "mentorW": mentorSc,
-            "shiftW": shiftSc,
-            "fnameP": fname,
-            "lnameP": lname,
-            "phoneP": phone,
+        const infoForm = {
+            "mentorW" : mentorSc,
+            "shiftW" : shiftSc,
+            "fnameP" : fname,
+            "lnameP" : lname,
+            "phoneP" : phone,
             "emailP": email,
-            "messageP": message,
-        });
-        console.log("Omar 1")
-        let json = JSON.stringify(fileObj);
-        console.log("Omar 2")
-        let fs = require('fs');
-        console.log("Omar 3")
-        fs.writeFile('./js/file.json', json, 'utf8', callback);
-        console.log("Omar 3")
+            "messageP" : message,
+        };
+
+       alert(infoForm);
+  
+        const fs = require('fs');
+        const saveData = (dataForm, file) => {
+            const finished = (error) => { 
+                if(error){
+                    return ;
+                }
+            }
+        
+            const jsonData = JSON.stringify(dataForm, null,2);
+            
+            fs.writeFile(file, jsonData, finished);
+        }
+
+        saveData(infoForm,'./js/file.json')
+        
+        let msgConfirmation = c1 + fname + " " + lname + c2; 
         document.getElementById("confMsg").innerHTML = msgConfirmation;
+        
     }
 
     else {

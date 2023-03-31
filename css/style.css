@@ -60,11 +60,6 @@ section:nth-child(odd) {
     padding: .8rem 3rem;
 }
 
-.btn:hover {
-    background: var(--templ);
-    letter-spacing: .1rem;
-}
-
 header {
     position: fixed;
     top: 0;
