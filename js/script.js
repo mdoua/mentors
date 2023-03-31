@@ -13,42 +13,33 @@ window.onload = function () {
 }
 
 function initialisation (){
-    fetch('./js/mShifts.json')
+    
+   fetch('./js/mShifts.json')
     .then(res => res.json())
     .then(data => initializeShifts(data))
     
 }
 
 function initializeShifts(jData , message1="") {
-    console.log("LIST 1");
-    console.log(jData);
-    console.log(jData.length);
 
     jData.forEach(element => {
-        console.log("element")
-        console.log(element["mentorName"]);
+
         shiftMentorList[iM] = new MShift();
         shiftMentorList[iM].MentorName = element["mentorName"];
-        console.log(shiftMentorList[iM]);
         shiftMentorList[iM].MentorShifts = element["mentorShifts"];
         iM++;
     });
    
-    console.log(message1);
-    console.log(shiftMentorList[--iM]);
     bindMentorsToDropDown();
-    
-
 }
 
-
+//display mentor list
 function bindMentorsToDropDown() {
     let dropDown = document.getElementById("ments");
     let el = document.createElement("option");
     el.textContent = "Select a mentor...";
     dropDown.appendChild(el);
 
-    console.log("bindMentorsToDropDown ", shiftMentorList.length);
     for (let i = 0; i < shiftMentorList.length; i++) {
         let la = shiftMentorList[i];
         let el = document.createElement("option");
@@ -58,6 +49,7 @@ function bindMentorsToDropDown() {
     }
 }
 
+// display shifts for a mentor
 function loadShift() {
 
     let dropDown = document.getElementById("ments").value;
@@ -94,7 +86,6 @@ function findShiftByMentor(name) {
 function ValidateEmail(mail) {
     //validate that email is valid by matching it to the regular expression
     let mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-    alert(mail);
     return mail.match(mailformat);
 }
 
@@ -116,16 +107,14 @@ function submitForm1(form) {
     if (correctmail) {
 
         const infoForm = {
-            "mentorW" : mentorSc,
-            "shiftW" : shiftSc,
-            "fnameP" : fname,
-            "lnameP" : lname,
-            "phoneP" : phone,
-            "emailP": email,
-            "messageP" : message,
+            'mentorW' : mentorSc,
+            'shiftW' : shiftSc,
+            'fnameP' : fname,
+            'lnameP' : lname,
+            'phoneP' : phone,
+            'emailP' : email,
+            'messageP' : message,
         };
-
-       alert(infoForm);
   
         const fs = require('fs');
         const saveData = (dataForm, file) => {
@@ -140,7 +129,7 @@ function submitForm1(form) {
             fs.writeFile(file, jsonData, finished);
         }
 
-        saveData(infoForm,'./js/file.json')
+        saveData(infoForm,'file.json')
         
         let msgConfirmation = c1 + fname + " " + lname + c2; 
         document.getElementById("confMsg").innerHTML = msgConfirmation;
@@ -159,9 +148,9 @@ function myFunction2() {
 
 //function to call API for random activity
  async function getRandomActivity() {
-    var apiURL = "http://www.boredapi.com/api/activity/";
-    var response = await fetch(apiURL);
-    var data = await response.json();
-    var {activity} = data;
+    const apiURL = "http://www.boredapi.com/api/activity/";
+    const response = await fetch(apiURL);
+    const data = await response.json();
+    let {activity} = data;
     document.querySelector(".content").innerHTML = activity ;
 }

@@ -1,11 +1,36 @@
-var express = require("express");
-var app = express();
+const express = require("express");
+const app = express();
+
 
 app.get("/url", (req, res, next) => {
-    res.json(["Mentor 1","Mentor 2","Mentor 3","Mentor 4","Mentor 5", "Mentor 6"]);
+    res.json(
+        [
+            {   
+                "mentorName" : "Mentor1",
+                "mentorShifts" :["shift1", "shift2", "shift3"]
+            },
+            {
+                "mentorName" : "Mentor2",
+                "mentorShifts" :["shift1", "shift2"]
+            },
+            {
+               "mentorName" : "Mentor3",
+               "mentorShifts" : ["shift1", "shift2", "shift3", "shift4", "shift5"]
+            },
+            {
+                "mentorName" : "Mentor4",
+                "mentorShifts" : ["shift1", "shift2", "shift3", "shift4", "shift5"]
+            },
+            {
+                "mentorName" : "Mentor5",
+                "mentorShifts" : ["shift1", "shift2", "shift3", "shift4"]
+            },
+            {
+                "mentorName" : "Mentor6",
+                "mentorShifts" : ["shift1", "shift2", "shift3", "shift4"]
+            }
+        ]);
    });
-
-
 
 app.listen(3000, () => {
  console.log("Server running on port 3000");
