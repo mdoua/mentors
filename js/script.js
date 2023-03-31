@@ -1,46 +1,46 @@
-window.onload = function () {
-    initializeShifts();
-    bindMentorsToDropDown();
-
-}
-
+let shiftMentorList = [];
+let iM = 0;
 
 class MShift {
     MentorName;
     MentorShifts = [];
 }
 
-let ShiftMentorList = [];
-
-
-function initializeShifts() {
-
-    let la1 = new MShift();
-    la1.MentorName = "Mentor1";
-    la1.MentorShifts = ["shift1", "shift2", "shift3"];
-
-    let la2 = new MShift();
-    la2.MentorName = "Mentor2";
-    la2.MentorShifts = ["shift1", "shift2"];
-
-    let la3 = new MShift();
-    la3.MentorName = "Mentor3";
-    la3.MentorShifts = ["shift1", "shift2", "shift3", "shift4", "shift5"];
-
-    let la4 = new MShift();
-    la4.MentorName = "Mentor4";
-    la4.MentorShifts = ["shift1", "shift2", "shift3", "shift4", "shift5"];
-
-    let la5 = new MShift();
-    la5.MentorName = "Mentor5";
-    la5.MentorShifts = ["shift1", "shift2", "shift3", "shift4"];
-
-    let la6 = new MShift();
-    la6.MentorName = "Mentor6";
-    la6.MentorShifts = ["shift1", "shift2", "shift3", "shift4"];
-
-    ShiftMentorList = [la1, la2, la3, la4, la5, la6];
+window.onload = function () {
+    
+    initialisation ();
+    
 }
+
+function initialisation (){
+    fetch('./js/mShifts.json')
+    .then(res => res.json())
+    .then(data => initializeShifts(data))
+    
+}
+
+function initializeShifts(jData) {
+    console.log("LIST 1");
+    console.log(jData);
+    console.log(jData.length);
+
+    jData.forEach(element => {
+        console.log("element")
+        console.log(element["mentorName"]);
+        shiftMentorList[iM] = new MShift();
+        shiftMentorList[iM].MentorName = element["mentorName"];
+        console.log(shiftMentorList[iM]);
+        shiftMentorList[iM].MentorShifts = element["mentorShifts"];
+        iM++;
+    });
+   
+    console.log("LIST LIST");
+    console.log(shiftMentorList[--iM]);
+    bindMentorsToDropDown();
+    
+
+}
+
 
 function bindMentorsToDropDown() {
     let dropDown = document.getElementById("ments");
@@ -48,8 +48,9 @@ function bindMentorsToDropDown() {
     el.textContent = "Select a mentor...";
     dropDown.appendChild(el);
 
-    for (let i = 0; i < ShiftMentorList.length; i++) {
-        let la = ShiftMentorList[i];
+    console.log("bindMentorsToDropDown ", shiftMentorList.length);
+    for (let i = 0; i < shiftMentorList.length; i++) {
+        let la = shiftMentorList[i];
         let el = document.createElement("option");
         el.textContent = la.MentorName;
         el.value = la.MentorName;
@@ -82,17 +83,12 @@ function loadShift() {
 }
 
 function findShiftByMentor(name) {
-    for (let i = 0; i < ShiftMentorList.length; i++) {
-        if (ShiftMentorList[i]["MentorName"] === name) {
-            return ShiftMentorList[i];
+    for (let i = 0; i < shiftMentorList.length; i++) {
+        if (shiftMentorList[i]["MentorName"] === name) {
+            return shiftMentorList[i];
         }
     }
     return undefined;
-}
-
-function myFunction2() {
-    let navbar1 = document.getElementById('navb');
-    navbar1.classList.toggle('show');
 }
 
 function ValidateEmail(mail) {
@@ -102,39 +98,38 @@ function ValidateEmail(mail) {
     return mail.match(mailformat);
 }
 
-function myFun(form) {
-
+function submitForm1(form) {
 
     let [mentorSc,  shiftSc, fname, lname, phone, email, message] = form ;
-
+    console.log("Om           ar")
     const c1 = "Thank you ";
     const c2 = " for your appointment.";
 
     let correctmail = ValidateEmail(email);
-
+    console.log("Omar ooooooo")
     if (correctmail) {
 
         let msgConfirmation = c1 + fname + " " + lname + c2;
         let fileObj = {
             table: []
         };
-
+        console.log("Omar")
         fileObj.table.push({
-            mentorW: mentorSc,
-            shiftW: shiftSc,
-            fnameP: fname,
-            lnameP: lname,
-            phoneP: phone,
-            emailP: email,
-            messageP: message,
+            "mentorW": mentorSc,
+            "shiftW": shiftSc,
+            "fnameP": fname,
+            "lnameP": lname,
+            "phoneP": phone,
+            "emailP": email,
+            "messageP": message,
         });
-
+        console.log("Omar 1")
         let json = JSON.stringify(fileObj);
-
+        console.log("Omar 2")
         let fs = require('fs');
-       
-        fs.writeFile('file.json', json, 'utf8', callback);
-
+        console.log("Omar 3")
+        fs.writeFile('./js/file.json', json, 'utf8', callback);
+        console.log("Omar 3")
         document.getElementById("confMsg").innerHTML = msgConfirmation;
     }
 
@@ -143,7 +138,12 @@ function myFun(form) {
     }
 }
 
+function myFunction2() {
+    let navbar1 = document.getElementById('navb');
+    navbar1.classList.toggle('show');
+}
 
+//function to call API for random activity
  async function getRandomActivity() {
     var apiURL = "http://www.boredapi.com/api/activity/";
     var response = await fetch(apiURL);

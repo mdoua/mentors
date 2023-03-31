@@ -49,15 +49,7 @@
 
                 <div>
                     <h3 class="content"></h3>
-                        <script>
-                            async function getRandomActivity() {
-                                var apiURL = "http://www.boredapi.com/api/activity/";
-                                var response = await fetch(apiURL);
-                                var data = await response.json();
-                                var {activity} = data;
-                                document.querySelector(".content").innerHTML = activity ;
-                            }
-        
+                        <script> 
                             setInterval(getRandomActivity,5000);
                         </script>  
                    
@@ -196,7 +188,7 @@
                 </div>
             </div>
 
-            <input type="submit" value="Confirm" onclick=myFun(this.parentElement) class="btn">
+            <input type="submit" value="Submit" onclick=submitForm1(this.parentElement) class="btn">
         </form>
 
 
