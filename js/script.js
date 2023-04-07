@@ -1,3 +1,4 @@
+
 let shiftMentorList = [];
 let iM = 0;
 
@@ -7,20 +8,20 @@ class MShift {
 }
 
 window.onload = function () {
-    
-    initialisation ();
-    
+
+    initialisation();
+
 }
 
-function initialisation (){
-    
-   fetch('./js/mShifts.json')
-    .then(res => res.json())
-    .then(data => initializeShifts(data))
-    
+function initialisation() {
+
+    fetch('./js/mShifts.json')
+        .then(res => res.json())
+        .then(data => initializeShifts(data))
+
 }
 
-function initializeShifts(jData , message1="") {
+function initializeShifts(jData, message1 = "") {
 
     jData.forEach(element => {
 
@@ -28,8 +29,8 @@ function initializeShifts(jData , message1="") {
         shiftMentorList[iM].MentorName = element["mentorName"];
         shiftMentorList[iM].MentorShifts = element["mentorShifts"];
         iM++;
-    });
-   
+    })
+
     bindMentorsToDropDown();
 }
 
@@ -86,11 +87,13 @@ function findShiftByMentor(name) {
 function ValidateEmail(mail) {
     //validate that email is valid by matching it to the regular expression
     let mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    alert(mail);
+    console.log(mail.match(mailformat));
     return mail.match(mailformat);
 }
 
 function submitForm1(form) {
-    
+
     let mentorSc = form[0].value;
     let shiftSc = form[1].value;
     let fname = form[2].value;
@@ -103,37 +106,17 @@ function submitForm1(form) {
     const c2 = " for your appointment.";
 
     let correctmail = ValidateEmail(email);
- 
-    if (correctmail) {
 
-        const infoForm = {
-            'mentorW' : mentorSc,
-            'shiftW' : shiftSc,
-            'fnameP' : fname,
-            'lnameP' : lname,
-            'phoneP' : phone,
-            'emailP' : email,
-            'messageP' : message,
-        };
-  
-        const fs = require('fs');
-        const saveData = (dataForm, file) => {
-            const finished = (error) => { 
-                if(error){
-                    return ;
-                }
-            }
-        
-            const jsonData = JSON.stringify(dataForm, null,2);
-            
-            fs.writeFile(file, jsonData, finished);
-        }
+    if (correctmail ) {
 
-        saveData(infoForm,'file.json')
-        
-        let msgConfirmation = c1 + fname + " " + lname + c2; 
+        // confirmation message
+        let msgConfirmation = c1 + fname + " " + lname + c2;
         document.getElementById("confMsg").innerHTML = msgConfirmation;
-        
+
+        let formdata = new FormData(form);
+
+        // call function to send the data to the serverß
+        postData(formdata);
     }
 
     else {
@@ -141,16 +124,22 @@ function submitForm1(form) {
     }
 }
 
+// sending the form data to the server
+async function postData(data1){
+        await fetch('http://localhost:3000/api/create', { method:'Post', body: data1,});
+};
+
 function myFunction2() {
     let navbar1 = document.getElementById('navb');
     navbar1.classList.toggle('show');
 }
 
 //function to call API for random activity
- async function getRandomActivity() {
+async function getRandomActivity() {
     const apiURL = "http://www.boredapi.com/api/activity/";
     const response = await fetch(apiURL);
     const data = await response.json();
-    let {activity} = data;
-    document.querySelector(".content").innerHTML = activity ;
+    let { activity } = data;
+    document.querySelector(".content").innerHTML = activity;
 }
+

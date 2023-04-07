@@ -1,5 +1,9 @@
 const express = require("express");
 const app = express();
+const newRouter = require('./news');
+
+app.use(express.static('public'));
+app.use('/api', newRouter)
 
 
 app.get("/url", (req, res, next) => {
@@ -32,7 +36,9 @@ app.get("/url", (req, res, next) => {
         ]);
    });
 
+
 app.listen(3000, () => {
  console.log("Server running on port 3000");
 });
+
 

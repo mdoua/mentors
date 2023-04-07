@@ -22,3 +22,12 @@ features :
 
 5- Retrieve data from a third-party API and use it to display something within your app.
    function getRandomActivity() call an API to get a random activity. An inteval of 5 seconds is set to call this function and get new activity each 5 seconds.
+
+
+6-Create a form and store the submitted values using an external API (e.g. a contact form, survey, etc).
+  the form to make appointments stored by an external API on the server.
+
+7-FEATURE DIFFICULTY RESOURCES Create a node.js web server using a modern framework such as Express.js or Fastify.
+Serve at least one route that your app uses (must serve more than just the index.html file).
+the app.js (be in the folde mentors and use ) node js/app.js to run the server.
+
